@@ -1,0 +1,80 @@
+@use "../abstracts/" as *;
+
+.movie-trending{
+    @include flex();
+    overflow: scroll;
+    gap: 30px;
+    padding: 5px;
+    margin-top: 10px;
+    position: relative;
+    &::-webkit-scrollbar{
+        width: 0;
+    }
+    .card-trending{
+        height: 250px;
+    }
+}
+.card-details{
+    margin-top: 20px;
+    @include flex();
+    figure{
+        width: 40%;
+        height: 400px;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &-content{
+        width: 60%;
+        padding: 80px 40px 50px 30px;
+        @include flex($direction:column);
+        gap: 20px;
+        &-firstline{
+            @include flex($justify:space-between);
+            .title{
+               font-size: pxToRem(32);
+            }
+            .evaluate{
+                @include flex($justify:start,$align:center);
+                gap: 5px;
+                figure{
+                    width: 20px;
+                    height: 20px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+        &-secondline{
+            width: 40%;
+            @include flex($justify:space-between);
+        }
+        &-description{
+            @include font($font-size:pxToRem(16),$font-weight:400);
+            opacity: 0.8;
+            line-height: 24px;
+        }
+        &-button{
+            width: 35%;
+            @include flex();
+            gap: 20px;
+            .stt{
+                @include flex($justify:center,$align:center);
+                border-radius: 10px;
+                border: none;
+
+                figure{
+                    width: 80%;
+                    height: 100%;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

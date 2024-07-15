@@ -1,0 +1,104 @@
+@use "../abstracts/" as *;
+video{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
+video::-webkit-media-controls{
+    display: none !important;
+}
+video::-webkit-media-controls-enclosure{
+    width: 0px !important;
+    height: 0px!important;
+    overflow: hidden;
+}
+.playscr{
+    padding: 3%;
+    height: 100vh;
+    position: relative;
+    z-index: 0;
+    @include flex();
+    .opa{
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+    }
+    .playcircle{
+        position: absolute;
+        top: 45%;
+        left: 45%;
+    }
+    .returnbtn{
+        position: absolute;
+        background-color: rgba(232, 229, 229, 0.7);
+        padding:  10px 10px;
+        border-radius: 10px;
+        border: 1px solid $text-color;
+        img{
+            align-self: center;
+            justify-self: center;
+            width: 100%;
+
+        }
+    }
+    &-bar-con{
+        width: 100%;
+        align-self: flex-end;
+        position: relative;
+        z-index: 100;
+        .playscr-bar{
+            padding: 10px;
+            @include flex($justify:space-between,$align:center);
+            border-radius: 5px;
+            border: 0px solid $text-color;
+            .progress{
+                width: 75%;
+                height:6px;
+                border-radius: 5px;
+                background-color: rgb(202, 195, 195);
+                position: relative;
+                  &-bar{
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 10;
+                    border-radius: 5px;
+                    height: 100%;
+                    width: 0;
+                    transition: width 1s linear;
+                    transition: width 1s linear;
+                    background-color: rgb(80, 13, 90);
+                    opacity: 0.8;
+                    filter: blur(0.7);
+                   }
+            }
+            progress::-webkit-progress-value{
+                background-color: $button-watch-color;
+          }
+            &::after{
+                content: "";
+               position: absolute;
+               top: 0;
+               left: 0;
+               z-index: -10;
+               height: 100%;
+               width: 100%;
+               background-color: $text-color;
+               opacity: 0.4;
+               filter: blur(0.5);
+               border-radius: 5px;
+            }
+
+
+        }
+    }
+}
+
