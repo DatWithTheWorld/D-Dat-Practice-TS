@@ -35,7 +35,7 @@ class MovieController {
       if (currentPath === '/playscr') {
         this.movieViews.appearToolbar();
         this.movieViews.toggleBar();
-        this.movieViews.videoDuration();
+        this.movieViews.videoDuration;
         this.movieViews.return(this.handleReturn);
         
       }
