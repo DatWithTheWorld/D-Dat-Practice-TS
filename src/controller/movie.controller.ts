@@ -20,6 +20,11 @@ class MovieController {
         this.movieViews.toggleRegist();
         this.movieViews.bindAddUser(this.handleAddUser);
         this.handleLogin();
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
         this.handleDisplayDataUser();
       }
     } else {
@@ -35,6 +40,7 @@ class MovieController {
         this.movieViews.toggleBar();
         this.movieViews.videoDuration();
         this.movieViews.return(this.handleReturn);
+        
       }
       if (
         currentPath === '/home' ||
