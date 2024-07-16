@@ -1,0 +1,29 @@
+@use "../abstracts/" as *;
+
+.nav-left-container{
+    @include flex($direction:column);
+    gap: 80px;
+    position: sticky;
+    top: 0;
+    ul{
+        @include flex($direction:column);
+        gap: 15px;
+        li{
+            opacity: 0.7;
+            font-weight: 100;
+            &:hover{
+               font-weight: 800;
+            }
+            a{
+                @include flex($align:center);
+                gap: 10px;
+            }
+        }
+    }
+    ul:nth-child(3){
+    margin-top: 10%;
+    }
+    ul:nth-child(4){
+    margin-top: 40%;
+    }
+}

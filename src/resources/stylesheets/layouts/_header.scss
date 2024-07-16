@@ -1,0 +1,38 @@
+@use "../abstracts/" as *;
+.header-container{
+    padding:  10px 80px 0 0;
+    @include flex($direction:column,$justify:center);
+    .nav-container{
+        z-index: 100;
+        @include flex($justify:space-between);
+        ul{
+            @include flex();
+            .avatar-icon{
+                width: 30px;
+                img{   
+                    border-radius: 50%; 
+                    width: 100%;
+                }
+            }
+        }
+        ul:nth-child(1){
+            width: 30%;
+            @include flex($justify:space-between);
+        }
+        ul:nth-child(2){
+            width: 20%;
+            @include flex($justify:space-between);
+            li:nth-child(3){
+                a{
+
+                    @include flex($justify:center,$align:center);
+                    gap: 10px;
+                }
+                p{
+                    text-transform: capitalize;
+                }
+            }
+        }
+    }
+   
+   }

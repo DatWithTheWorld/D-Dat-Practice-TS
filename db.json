@@ -1,0 +1,220 @@
+{
+  "users": [
+    {
+      "id": "dd1",
+      "name": "datbrao",
+      "password": "1",
+      "avatar": "",
+      "email": "",
+      "favorites": [
+        {
+          "id": "1"
+        },
+        {
+          "id": "3"
+        },
+        {
+          "id": "dpvt"
+        },
+        {
+          "id": "1mno"
+        }
+      ],
+      "watched": [
+        {
+          "id": "2",
+          "timewatched": "1.016061"
+        }
+      ]
+    },
+    {
+      "id": "n6ud",
+      "name": "datbravo",
+      "password": "1",
+      "email": "dat@gmail.com",
+      "favorites": [],
+      "watched": []
+    },
+    {
+      "id": "8v72",
+      "name": "nguyendat",
+      "password": "1",
+      "email": "d@gmail.com",
+      "avatar": "",
+      "favorites": [],
+      "watched": []
+    },
+    {
+      "id": "twd7",
+      "name": "drama",
+      "password": "1",
+      "email": "da@gmail.com",
+      "avatar": "",
+      "favorites": [],
+      "watched": []
+    },
+    {
+      "id": "88nw",
+      "name": "dao",
+      "password": "1",
+      "email": "do@gmail.com",
+      "avatar": "",
+      "favorites": [],
+      "watched": []
+    },
+    {
+      "id": "yzdi",
+      "name": "dat",
+      "password": "1",
+      "email": "dat@gmail.com",
+      "avatar": "",
+      "favorite": [],
+      "watched": []
+    },
+    {
+      "id": "36bi",
+      "name": "dataaa",
+      "password": "1",
+      "email": "dat@gmail.com",
+      "avatar": "",
+      "favorites": [],
+      "watched": []
+    },
+    {
+      "id": "u4vd",
+      "name": "ada",
+      "password": "1",
+      "email": "ada@gmail.com",
+      "avatar": "",
+      "favorites": [
+        {
+          "id": "1"
+        },
+        {
+          "id": "2"
+        },
+        {
+          "id": "3"
+        }
+      ],
+      "watched": [
+        {
+          "id": "1",
+          "timewatched": "2.044375"
+        }
+      ]
+    },
+    {
+      "id": "muvv",
+      "name": "",
+      "password": "",
+      "email": "",
+      "avatar": "",
+      "favorites": [],
+      "watched": []
+    },
+    {
+      "id": "3km7",
+      "name": "dat",
+      "password": "@123Datduc",
+      "email": "dat@gmail.com",
+      "avatar": "",
+      "favorites": [],
+      "watched": []
+    },
+    {
+      "id": "v8wo",
+      "name": "nguyenducdat",
+      "password": "Dat@1234567",
+      "email": "dat@gmail.com",
+      "avatar": "",
+      "favorites": [],
+      "watched": []
+    }
+  ],
+  "movies": [
+    {
+      "id": "1",
+      "name": "House of Wealth",
+      "year": "2022",
+      "type": "Drama",
+      "poster": "png-tko-train.png",
+      "link": "food.mp4",
+      "duration": "2h 38m",
+      "description": "The movie follows the lives of a wealthy family, the Johnsons, who appear to have it all: a grand mansion, luxurious cars, and expensive designer clothing. However, behind the facade of their lavish lifestyle, there are deep-seated tensions and secrets that threaten to tear the family apart.",
+      "evaluate": "7.8",
+      "favorites": "ic-heart-3d"
+    },
+    {
+      "id": "2",
+      "name": "Ghost",
+      "year": "2015",
+      "type": "scary",
+      "poster": "moonfall.png",
+      "link": "video.mp4",
+      "duration": "4.0 hours",
+      "description": "The best movies of the year",
+      "evaluate": "5",
+      "favorites": "ic-heart-3d"
+    },
+    {
+      "id": "3",
+      "name": "Ghost",
+      "year": "2015",
+      "type": "scary",
+      "poster": "moonfall.png",
+      "link": "video.mp4",
+      "duration": "4.0 hours",
+      "description": "The best movies of the year",
+      "evaluate": "5",
+      "favorites": "ic-heart-3d"
+    },
+    {
+      "id": "dpvt",
+      "name": "Drible",
+      "year": "2024",
+      "type": "Historical",
+      "poster": "png-tko-train.png",
+      "link": "food.mp4",
+      "duration": "",
+      "description": "My mother is a person I admire most. She devoted a lot of time and energy to the upbringing of my two brothers and 1. Despite working hard, she always made time to teach us many useful things which are necessary and important in our later lives. Moreover, she is a good role model for me to follow. She always tries to get on well with people who live next door and help everyone when they are in difficulties, so most of them respect and love her.",
+      "evaluate": "1.0",
+      "favorites": "ic-heart-3d"
+    },
+    {
+      "id": "dumc",
+      "name": "Droppick",
+      "year": "2024",
+      "type": "Cartoon",
+      "poster": "png-tko-train.png",
+      "link": "video.mp4",
+      "duration": "",
+      "description": "My first visit to Nha Trang, the coastal city, was three years ago. It was a pleasant and memorable trip. Nha Trang, the capital of Khanhs Hoaf province, has one of the most popular municipal beaches in all of Vietnam. In Nha Trang, nature beauties are so tempting. Waves crashing onto the cliffs; the soft sigh of the sea breeze; clean white sands and turquoise waters; it all makes for a stunning landscapes. On my visit to Nha Trang, I used to get up early each morning to stroll along the beach a chance to breath in the fresh sea air and enjoy the sunrise across the water.",
+      "evaluate": "1.0",
+      "favorites": "ic-heart-3d"
+    },
+    {
+      "id": "o62z",
+      "name": "Driblesf",
+      "year": "2024",
+      "type": "Cartoon",
+      "poster": "png-tko-train.png",
+      "link": "food.mp4",
+      "description": "My first visit to Nha Trang, the coastal city, was three years ago. It was a pleasant and memorable trip. Nha Trang, the capital of Khanhs Hoaf province, has one of the most popular municipal beaches in all of Vietnam. In Nha Trang, nature beauties are so tempting. Waves crashing onto the cliffs; the soft sigh of the sea breeze; clean white sands and turquoise waters; it all makes for a stunning landscapes. On my visit to Nha Trang, I used to get up early each morning to stroll along the beach a chance to breath in the fresh sea air and enjoy the sunrise across the water.",
+      "evaluate": "1.0",
+      "favorites": "ic-heart-3d"
+    },
+    {
+      "id": "1mno",
+      "name": "Dribleffff",
+      "year": "2024",
+      "type": "Cartoon",
+      "poster": "png-tko-train.png",
+      "link": "video.mp4",
+      "duration": 15.812789,
+      "description": "a",
+      "evaluate": "1.0",
+      "favorites": "ic-heart-3d"
+    }
+  ]
+}

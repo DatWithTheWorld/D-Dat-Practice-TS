@@ -1,0 +1,207 @@
+@use "../abstracts/" as *;
+
+.main-section{
+    overflow: hidden;
+    height: 100%;
+    @include flex();
+    &-content--right{
+        position: relative;
+        overflow: scroll;
+        width: 80%;
+        margin-left: 20%;
+        height: 1000px;
+        padding: 0 0px 0 40px;
+        background-color: $background-left-nav;
+        box-shadow: inset 30px -30px 100px rgba(98, 25, 176, 0.5);
+        &::-webkit-scrollbar{
+            width: 0;
+        }
+        .addMovieForm{
+            position: absolute;
+            z-index: 100;
+            width: 40%;
+            top:5%;
+            left: 25%;
+            &-con{
+                position: relative;
+                width: 100%; 
+            padding: 30px 40px;
+            @include flex($justify:center,$align:center);
+                form {
+                    width: 100%;
+                    div{
+                        gap: 5px;
+                        @include flex($direction:column);
+                        input{
+                            padding: 10px;
+                            border-radius: 10px;
+                            outline: none;
+                            color: $button-watch-color;
+                            font-weight: 500;
+                            &::placeholder{
+                                color:$button-watch-color;
+                            }
+
+                        }
+                        select{
+                            max-width: fit-content;
+                            padding: 10px;
+                            border-radius: 10px;
+                            outline: none;
+                            color: $button-watch-color;
+                            font-weight: 500;
+                            optgroup{
+                                list-style-type: circle;
+                                color: red;
+                                option{
+                                    color: $button-watch-color;
+                                    font-weight: 500;
+                                }
+                            }
+                        }
+                    }
+                    position: relative;
+                    @include flex($direction:column);
+                    gap: 20px;
+                   z-index: 10;
+                   
+            }
+            &::after {
+                position: absolute;
+                z-index: -10;
+                content: "";
+                width: 100%;
+                height: 100%;
+                padding: 30%;
+                top: 0;
+                border-radius: 20px;
+                background-color: rgba(72, 19, 73, 0.8);
+                backdrop-filter: blur(50px); 
+                border: 3px solid pink;
+              }
+        }
+        }
+        .movie-center{
+            position: relative;
+            z-index: 0;
+            width: 100%;
+            max-height: max-content;
+            padding-top: 30px;
+            padding-right: 30px;
+            overflow: scroll;
+            &-trending{
+                margin-top:3%;
+                &-card{
+                    @include flex();
+                    overflow: scroll;
+                    gap: 30px;
+                    padding: 5px;
+                    margin-top: 10px;
+                    position: relative;
+                    &::-webkit-scrollbar{
+                        width: 0;
+                    }
+                    .card-trending{
+                        height: 350px;
+                    }
+                }
+            }
+            &-continue{
+                &-card{
+                    margin-top: 1%;
+                    @include flex();
+                    overflow: scroll;
+                    gap: 30px;
+                    padding: 5px;
+                    margin-top: 10px;
+                    &::-webkit-scrollbar{
+                        width: 0;
+                    }
+                    .card-trending{
+                        min-width: 350px;
+                    }
+                }
+            }
+            &::-webkit-scrollbar{
+                width: 0;
+            }
+            .btn-add{
+                float: right;
+                width:10%;
+                margin-right: 20px;
+                text-wrap: nowrap;
+            }
+            &::after{
+                content: "";
+                position: absolute;
+                z-index: -1;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: $background-left-nav;
+                opacity: 0.9;
+                filter: blur(200px);
+            }
+        }
+    }
+    &-nav--left{
+        height: 100%;
+        padding: 30px 40px 40px 40px;
+        width: 20%;
+        background-color: $background-left-nav;
+       position: fixed;
+       left: 0;
+       top: 0;
+    }
+}
+.header-title{
+    position: relative;
+    @include flex($direction:column);
+    gap: 20px;
+    padding: 50px 0;
+    z-index: 0;
+    .header-container{
+        z-index: 2;
+    }
+    video{
+        position: absolute;
+        top: 0;
+        width: 120%;
+        left: -20%;
+        object-fit: cover;
+        z-index: 1;
+    }
+    .movie-name{
+        z-index: 3;
+        @include font($font-size:pxToRem(48),$font-weight:600);
+    }
+    .movie-details{
+        z-index: 3;
+        @include flex();
+        @include font($font-size:pxToRem(14));
+        span{
+            padding: 0 5px;
+        }
+        span:nth-child(1),span:nth-child(2){
+            border-right: 2px solid $text-color;
+        }
+    }
+    .button-group{
+        z-index: 3;
+        width: 20%;
+        @include flex();
+        gap: 15px;
+        .btn-watchNow{
+            width: 60%;
+        }
+        .heart{
+           border-radius: 10px;
+           border: none;
+           @include flex($justify:center,$align:center);
+           img{
+            width: 80%;
+           }
+        }
+    }
+}

@@ -1,0 +1,12 @@
+@use "../abstracts/" as *;
+
+.btn-primary{
+    @include button($background-color:$button-watch-color,$width:100%,$padding:10px,$border-radius:10px,$border:none);
+    @include color($color:$text-color);
+    @include font($font-size:pxToRem(16),$font-weight:500,$line-height:20px,$font-family:$primary-font);
+    &:hover{
+        transform: scale(1.05);
+;
+    }
+    transition: 0.2s ease-in;
+}
