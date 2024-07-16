@@ -16,6 +16,7 @@ class MovieView {
   main: HTMLDivElement;
   container: HTMLDivElement;
   toastList: HTMLUListElement;
+  users: any;
   constructor() {
     this.app = document.querySelector('#root');
     this.router = new Router(this.app);
@@ -45,15 +46,16 @@ class MovieView {
     const playcircle = document.querySelector('.playcircle');
     const playbarcon = document.querySelector('.playscr-bar-con');
     const playbar = document.querySelector('.playscr-bar');
-    const videos = document.getElementById('playsrcvd');
+    const videos = document.getElementById('playsrcvd') as HTMLVideoElement;
     const opa = document.querySelector('.opa');
     if(playscr != null && videos != null){
     const figureE = Array.from(playscr.querySelectorAll('.figuresc'));
     playscr.addEventListener('click', function (event) {
-      const target = event.target;
-      if (target !== playbar && !figureE.includes(target)) {
+      const target = event.target as HTMLElement;
+      if (target  !== playbar && !figureE.includes(target)) {
         if (videos.paused) {
           videos.play();
+          if(playcircle && returnbtn && playbarcon && opa){
           playcircle.classList.toggle('hidden');
           returnbtn.classList.toggle('hidden');
           setTimeout(() => {
@@ -62,19 +64,24 @@ class MovieView {
           setTimeout(() => {
             opa.classList.toggle('hidden');
           }, 0);
+        }
         } else {
           videos.pause();
+          if(playcircle && returnbtn && playbarcon && opa){
           opa.classList.toggle('hidden');
           playcircle.classList.toggle('hidden');
           playbarcon.classList.toggle('hidden');
           returnbtn.classList.toggle('hidden');
         }
       }
+      }
     });
     videos.addEventListener('ended', () => {
+        if(playcircle && returnbtn && playbarcon && opa){
       playcircle.classList.toggle('hidden');
       playbarcon.classList.toggle('hidden');
       returnbtn.classList.toggle('hidden');
+        }
     });
     }
     
@@ -85,9 +92,12 @@ class MovieView {
     const returnbtn = document.querySelector('.returnbtn');
     const videos = document.getElementById('playsrcvd');
     setTimeout(() => {
+      if(playscrbarcon && returnbtn){
       playscrbarcon.classList.toggle('hidden');
       returnbtn.classList.toggle('hidden');
+      }
     }, 2000);
+
   }
 
   initRoute() {
@@ -103,24 +113,27 @@ class MovieView {
     const loginform = document.querySelector('.con-form-login');
     const lgform = document.querySelector('.form-log');
     validate(lgform);
+    if(logginbtn && loginform && lgform){
     logginbtn.addEventListener('click', function () {
       loginform.classList.toggle('hidden');
     });
     document.addEventListener('click', function (e) {
-      const targetE = e.target;
+      const targetE = e.target as HTMLElement;
       if (!loginform.contains(targetE) && !logginbtn.contains(targetE)) {
         loginform.classList.add('hidden');
       }
     });
   }
+  }
   toggleAddForm() {
     const btnadd = document.querySelector('.btn-add');
     const addForm = document.querySelector('.addMovieForm');
+    if( btnadd && addForm){
     btnadd.addEventListener('click', function (e) {
       addForm.classList.toggle('hidden');
     });
     document.addEventListener('click', function (event) {
-      const targetElement = event.target;
+      const targetElement = event.target as HTMLElement;
       if (!addForm.classList.contains('hidden')) {
         if (
           !addForm.contains(targetElement) &&
@@ -131,13 +144,14 @@ class MovieView {
       }
     });
   }
+  }
   videoDuration(dura) {
-    const videos = document.getElementById('playsrcvd');
+    const videos = document.getElementById('playsrcvd') as HTMLVideoElement;
     let maxDuration = 0;
-    const progressBar = document.querySelector('.progress-bar');
-    const timingElement = document.querySelector('.timing');
-    const maxtimeE = document.querySelector('.maxtime');
-
+    const progressBar = document.querySelector('.progress-bar') as HTMLElement;
+    const timingElement = document.querySelector('.timing') as HTMLElement;
+    const maxtimeE = document.querySelector('.maxtime') as HTMLElement;
+    if(videos)
     videos.addEventListener('loadedmetadata', function (e) {
       maxDuration = videos.duration;
       if (dura) {
@@ -167,15 +181,15 @@ class MovieView {
     });
   }
   toggleRegist() {
-    const signupbtn = document.querySelector('.btn-signup');
-    const registform = document.querySelector('.con-form-regist');
-    const formRes = document.querySelector('.form-res');
+    const signupbtn = document.querySelector('.btn-signup') as HTMLElement;
+    const registform = document.querySelector('.con-form-regist') as HTMLElement;
+    const formRes = document.querySelector('.form-res') as HTMLElement;
     signupbtn.addEventListener('click', function () {
       validate(formRes);
       registform.classList.toggle('hidden');
     });
     document.addEventListener('click', function (e) {
-      const targetE = e.target;
+      const targetE = e.target as HTMLElement;
       if (!registform.contains(targetE) && !signupbtn.contains(targetE)) {
         registform.classList.add('hidden');
       }
@@ -183,28 +197,33 @@ class MovieView {
   }
   loginss(users) {
     this.users = users;
-    const forms = document.querySelector('.form-log');
-    const button = document.querySelector('.btn-submit-login');
+    const forms = document.querySelector('.form-log') as HTMLElement;
+    const button = document.querySelector('.btn-submit-login') as HTMLElement;
     button.addEventListener('click', (e) => {
       e.preventDefault();
-      const name = document.querySelector('.username-input').value;
-      const password = document.querySelector('.userpassword-input').value;
-      if (this.checkValidForm(forms)) {
-        let isLoggedIn = false;
-        this.users.forEach((user) => {
-          if (user.name === name && user.password === password) {
-            sessionStorage.setItem('name', name);
-            sessionStorage.setItem('id', user.id);
-            isLoggedIn = true;
+      const usernameInput = document.querySelector('.username-input') as HTMLInputElement;
+      const passwordInput = document.querySelector('.userpassword-input') as HTMLInputElement;
+      if (usernameInput && passwordInput) {
+        const name = usernameInput.value;
+        const password = passwordInput.value;
+        if (this.checkValidForm(forms)) {
+          let isLoggedIn = false;
+          this.users.forEach((user) => {
+            if (user.name === name && user.password === password) {
+              sessionStorage.setItem('name', name);
+              sessionStorage.setItem('id', user.id);
+              isLoggedIn = true;
+            }
+          });
+  
+          if (isLoggedIn) {
+            window.location.href = '/home';
+          } else {
+            createToast('error', 'Invalid username or password');
           }
-        });
-
-        if (isLoggedIn) {
-          window.location.href = '/home';
-        } else {
-          createToast('error', 'Invalid username or password');
         }
       }
+     
     });
   }
   return(handle) {

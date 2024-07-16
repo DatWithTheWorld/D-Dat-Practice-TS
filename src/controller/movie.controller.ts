@@ -20,6 +20,8 @@ class MovieController {
         this.movieViews.toggleRegist();
         this.movieViews.bindAddUser(this.handleAddUser);
         this.handleLogin();
+
+        
         this.handleDisplayDataUser();
       }
     } else {
