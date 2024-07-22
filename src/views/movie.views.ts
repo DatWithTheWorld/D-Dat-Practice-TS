@@ -10,6 +10,8 @@ import { createToast } from './components/handleToast';
 import generateID from '../helper/uid';
 import { apimv } from '../resources/constants/constant';
 import validate from '../helper/formValidates';
+import User from '../model/user.model';
+import Movie from '../model/movie.model';
 class MovieView {
   app: any;
   router: Router;
@@ -35,11 +37,11 @@ class MovieView {
     this.app.appendChild(this.main);
     this.router.changeRoute();
   }
-  checkValidForm(dForm) {
+  checkValidForm(dForm: HTMLFormElement) {
     const inputs = [...dForm.querySelectorAll('input')];
     return !inputs.some((input) => input.classList.contains('invalid'));
   }
-  clearInvalid(dForm) {
+  clearInvalid(dForm: HTMLFormElement) {
     const inputs = [...dForm.querySelectorAll('input')];
     inputs.map((input) => input.classList.remove('invalid'));
   }
@@ -114,7 +116,7 @@ class MovieView {
   toggleLogin() {
     const logginbtn = document.querySelector('.btn-log');
     const loginform = document.querySelector('.con-form-login');
-    const lgform = document.querySelector('.form-log');
+    const lgform = document.querySelector('.form-log') as HTMLFormElement;
     validate(lgform);
     if(logginbtn && loginform && lgform){
     logginbtn.addEventListener('click', function () {
@@ -148,7 +150,7 @@ class MovieView {
     });
   }
   }
-  videoDuration(dura) {
+  videoDuration(dura: number) {
     const videos = document.getElementById('playsrcvd') as HTMLVideoElement;
     let maxDuration = 0;
     const progressBar = document.querySelector('.progress-bar') as HTMLElement;
@@ -186,7 +188,7 @@ class MovieView {
   toggleRegist() {
     const signupbtn = document.querySelector('.btn-signup') as HTMLElement;
     const registform = document.querySelector('.con-form-regist') as HTMLElement;
-    const formRes = document.querySelector('.form-res') as HTMLElement;
+    const formRes = document.querySelector('.form-res') as HTMLFormElement;
     signupbtn.addEventListener('click', function () {
       validate(formRes);
       registform.classList.toggle('hidden');
@@ -198,9 +200,9 @@ class MovieView {
       }
     });
   }
-  loginss(users) {
+  loginss(users: User[] | undefined ) {
     this.users = users;
-    const forms = document.querySelector('.form-log') as HTMLElement;
+    const forms = document.querySelector('.form-log') as HTMLFormElement;
     const button = document.querySelector('.btn-submit-login') as HTMLElement;
     button.addEventListener('click', (e) => {
       e.preventDefault();
@@ -211,7 +213,7 @@ class MovieView {
         const password = passwordInput.value;
         if (this.checkValidForm(forms)) {
           let isLoggedIn = false;
-          this.users.forEach((user) => {
+          this.users.forEach((user: { name: string; password: string; id: string; }) => {
             if (user.name === name && user.password === password) {
               sessionStorage.setItem('name', name);
               sessionStorage.setItem('id', user.id);
@@ -229,13 +231,15 @@ class MovieView {
      
     });
   }
-  return(handle) {
+  return(handle: (mvid:string, currentTime:string)=>void) {
     const returnbtn = document.querySelector('.returnbtn') as HTMLElement;
     const video = document.querySelector('#playsrcvd') as HTMLVideoElement;
 
     returnbtn.addEventListener('click', (e) => {
       e.preventDefault();
-      handle(sessionStorage.getItem('mvid'), '' + video.currentTime);
+      const mvid = sessionStorage.getItem('mvid');
+      const currentTime = '' + video.currentTime;
+      handle(mvid!, currentTime);
       window.location.href = '/trending';
     });
   }
@@ -290,29 +294,29 @@ class MovieView {
       default:
     }
   }
-  displayData(movies) {
+  displayData(movies: Movie[] | undefined) {
     this.movies = movies;
     const hometrendingct = document.querySelector(
       '.movie-center-trending-card',
     ) as HTMLElement ;
     let html = '';
-    this.movies.forEach((movie) => {
+    this.movies.forEach((movie: { id: any; poster: any; favorites: any; name: any; year: any; type: any; }) => {
       html += cardTrending(movie);
     });
     hometrendingct.innerHTML = html;
   }
 
-  displayDataTDP(movies) {
+  displayDataTDP(movies: Movie[] | undefined) {
     this.movies = movies;
     const movieTrending = document.querySelector('.movie-trending') as HTMLElement;
     let html = '';
-    this.movies.forEach((movie) => {
+    this.movies.forEach((movie: { id: any; poster: any; favorites: any; name: any; year: any; type: any; }) => {
       html += cardTrending(movie);
     });
     movieTrending.innerHTML = html;
   }
 
-  showCardTrending(movies, idmv) {
+  showCardTrending(movies: Movie[] | undefined, idmv: { id: number; timewatched: number; }[] | undefined) {
     this.idmv = idmv;
     this.movies = movies;
     const movieTrending = document.querySelector('.movie-trending') as HTMLElement;
@@ -332,7 +336,7 @@ class MovieView {
         const btnfvr = card.querySelector('.card-trending-status') as HTMLElement;
         const imga = btnfvr.querySelector('img') as HTMLImageElement;
         const imgasrc = imga.src;
-        this.movies.forEach((movie) => {
+        this.movies.forEach((movie: { id: any; duration?: number; poster?: any; name?: any; evaluate?: any; year?: any; type?: any; description?: any; }) => {
           if (movie.id === id) {
             cardContainer.innerHTML = CardDetail(movie);
           }
@@ -344,9 +348,9 @@ class MovieView {
         btnwatch.addEventListener('click', (e) => {
           e.preventDefault();
           const id = carddt.getAttribute('data-id');
-          this.movies.forEach((movie) => {
+          this.movies.forEach((movie: { id: string | null; link: string; }) => {
             if (movie.id === id) {
-              this.idmv.forEach((idm) => {
+              this.idmv.forEach((idm: { id: string | null; timewatched: string; }) => {
                 if (idm.id === id) {
                   sessionStorage.setItem('link', movie.link);
                   sessionStorage.setItem('mvid', movie.id);
@@ -483,14 +487,14 @@ class MovieView {
     });
     favorite.innerHTML = html;
   }
-  displayDataContinue(movies, ids, idmv) {
+  displayDataContinue(movies: Movie[] | undefined, ids: { id: number; timewatched: number; }[] | undefined, idmv: string) {
     this.movies = movies;
     this.ids = ids;
     this.idmv = Array.isArray(idmv) ? idmv : [idmv];
     const continues = document.querySelector('.movie-center-continue-card') as HTMLElement;
     let html = '';
-    this.movies.forEach((movie) => {
-      this.ids.forEach((id) => {
+    this.movies.forEach((movie: { id: any; poster?: any; favorites?: any; name?: any; year?: any; type?: any; }) => {
+      this.ids.forEach((id: { id: any; }) => {
         if (movie.id === id.id) {
           html += cardTrending(movie);
         }
@@ -499,7 +503,7 @@ class MovieView {
     continues.innerHTML = html;
     const cardtr = continues.querySelectorAll('.card-trending');
     cardtr.forEach((card) => {
-      this.idmv.forEach((id) => {
+      this.idmv.forEach((id: string | null) => {
         if (id === card.getAttribute('data-id')) {
           const btnfvr = card.querySelector('.card-trending-status') as HTMLInputElement;
           const imga = btnfvr.querySelector('img') as HTMLImageElement;

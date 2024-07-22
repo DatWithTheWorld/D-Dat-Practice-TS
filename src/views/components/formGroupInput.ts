@@ -1,4 +1,4 @@
-const formGroupInput = (content) => {
+const formGroupInput = (content: { label: string; className: string; type: string; placeholder: string; name: string; accept?: undefined; } | { label: string; className: string; type: string; name: string; placeholder?: undefined; accept?: undefined; } | { label: string; className: string; type: string; name: string; accept: string; placeholder: string; } | { label: string; className: string; type: string; accept: string; placeholder: string; name?: undefined; }) => {
   let { label, className, type, placeholder, name } = content;
   return `
        <div>

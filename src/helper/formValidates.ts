@@ -1,5 +1,3 @@
-import { createToast } from '../views/components/handleToast';
-
 const inputValidationRules = {
   name: /^[a-z]+$/,
   email: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
@@ -13,7 +11,7 @@ const inputCollection = {
   password: 'password',
 };
 
-const handleValidate = (input, condition, injectClass) => {
+const handleValidate = (input: HTMLInputElement, condition: boolean, injectClass: string) => {
   if (condition) {
     input.classList.remove(injectClass);
   } else {
@@ -21,18 +19,19 @@ const handleValidate = (input, condition, injectClass) => {
   }
 };
 
-const checkInput = (e, eventType) => {
-  const inputTarget = e.target;
-  const inputValue = e.target.value;
-  const inputName = e.target.name;
+const checkInput = (e: Event, eventType: string) => {
+  const inputTarget = e.target as HTMLInputElement;
+  const inputValue = inputTarget.value;
+  const inputName = inputTarget.name;
   if (
     inputTarget.type === 'text' ||
     inputTarget.type === 'password' ||
     inputTarget.type === 'email'
   ) {
     switch (eventType) {
-      case 'blur': {
-        const inputValidate = inputValidationRules[inputName].test(inputValue);
+      case 'blur':
+      case 'change': {
+        const inputValidate = (inputValidationRules[inputName as keyof typeof inputValidationRules] as RegExp).test(inputValue);
         if (inputValue.length <= 0) {
           handleValidate(inputTarget, false, 'invalid');
         } else if (inputValue.length < inputValidationRules.inputMin) {
@@ -77,7 +76,7 @@ const checkInput = (e, eventType) => {
   } else if (inputTarget.type === 'file') {
     switch (eventType) {
       case 'change': {
-        const inputValidate = inputValidationRules[inputName].test(inputValue);
+        const inputValidate = (inputValidationRules[inputName as keyof typeof inputValidationRules] as RegExp).test(inputValue);
         if (!inputValidate) {
           handleValidate(inputTarget, inputValidate, 'invalid');
           break;
@@ -90,11 +89,10 @@ const checkInput = (e, eventType) => {
   }
 };
 
-const validate = (form) => {
+const validate = (form: HTMLFormElement) => {
   const textInput = form.querySelectorAll('input');
 
   [...textInput].forEach((item) => {
-    console.log(item);
     item.addEventListener('blur', (e) => {
       checkInput(e, 'blur');
     });
