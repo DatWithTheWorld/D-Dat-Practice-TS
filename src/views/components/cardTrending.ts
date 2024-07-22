@@ -1,7 +1,7 @@
-import { IcHeartActiveIcon } from '../../resources/assets/icons';
 import { apimv } from '../../resources/constants/constant';
 
-function cardTrending(movie) {
+function cardTrending(movie: { id: any; poster: any; favorites: any; name: any; year: any; type: any; }) {
+  console.log(movie)
   return `
     <div class="card-trending" data-id="${movie.id}">
     <figure class="card-trending-figure">

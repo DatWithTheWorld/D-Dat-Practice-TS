@@ -62,7 +62,7 @@ class MovieController {
       }
     }
   }
-  onDataChanged = (movies) => {
+  onDataChanged = (movies: any) => {
     this.movieViews.displayData(movies);
   };
   async handleDisplayData() {
@@ -71,7 +71,7 @@ class MovieController {
   }
   async handleGetItemByUser() {
     const ids = await this.movieServices.getMovieIdByUID(
-      sessionStorage.getItem('id'),
+      sessionStorage.getItem('id') as string,
     );
     this.movieViews.showFavoriteItem(ids);
   }
@@ -87,10 +87,10 @@ class MovieController {
     await this.movieServices.getAllUsers();
     this.movieViews.bindAddToFavorite(this.handleAddToFavorite);
   }
-  handleReturn = (id, time) => {
+  handleReturn = (id: any, time: any) => {
     this.movieServices.addToContinue(id, time);
   };
-  handleAddToFavorite = (id) => {
+  handleAddToFavorite = (id: any) => {
     this.movieServices.addToFavorite(id);
   };
   async handleDisplayDataTDP() {
@@ -102,7 +102,7 @@ class MovieController {
   async handleDisplayDataFavorites() {
     const movies = await this.movieServices.getAllMovies();
     const ids = await this.movieServices.getMovieIdByUID(
-      sessionStorage.getItem('id'),
+      sessionStorage.getItem('id') as string,
     );
     this.movieViews.displayDataFavorites(movies, ids);
   }
@@ -110,14 +110,14 @@ class MovieController {
     const movies = await this.movieServices.getAllMovies();
     const ids = await this.movieServices.getMovieIdByUIDCTN();
     const idmv = await this.movieServices.getMovieIdByUID(
-      sessionStorage.getItem('id'),
+      sessionStorage.getItem('id') as string,
     );
     this.movieViews.displayDataContinue(movies, ids, idmv);
   }
-  handleAddUser = (user) => {
+  handleAddUser = (user: any) => {
     this.movieServices.addUser(user);
   };
-  handleAddMovie = (movie) => {
+  handleAddMovie = (movie: any) => {
     this.movieServices.addMovie(movie);
   };
 }
