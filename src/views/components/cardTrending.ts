@@ -1,6 +1,6 @@
 import { apimv } from '../../resources/constants/constant';
 
-function cardTrending(movie: { id: any; poster: any; favorites: any; name: any; year: any; type: any; }) {
+function cardTrending(movie: { id?: any; duration?: any; poster?: any; name?: any; evaluate?: any; year?: any; type?: any; description?: any;link?: any; favorites?: any; }) {
   console.log(movie)
   return `
     <div class="card-trending" data-id="${movie.id}">
