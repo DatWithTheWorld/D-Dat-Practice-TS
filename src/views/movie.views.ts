@@ -365,7 +365,7 @@ class MovieView {
       });
     });
   }
-  bindAddUser(handle) {
+  bindAddUser(handle: { (user: any): void; (user: any): void; (arg0: { id: string; name: string; password: string; avatar: string; email: string; favorites: never[]; watched: never[]; }): void; }) {
     const addButton = document.querySelector('.btn-submit-regist') as HTMLElement;
     const formRes = document.querySelector('.form-res') as HTMLFormElement;
     const usernameInput = formRes.querySelector('.username-input') as HTMLInputElement;
@@ -393,7 +393,7 @@ class MovieView {
       }
     });
   }
-  getVideoDuration(file) {
+  getVideoDuration(file: any) {
     return new Promise((resolve) => {
       const fileUrl = URL.createObjectURL(file);
       const video = document.createElement('video');
@@ -404,7 +404,7 @@ class MovieView {
       });
     });
   }
-  bindAddMovie(handle) {
+  bindAddMovie(handle: { (movie: any): void; (arg0: { id: string; name: string; year: string; type: string; poster: string; link: string; duration: unknown; description: string; evaluate: string; favorites: string; }): void; }) {
     const addButton = document.querySelector('.addmoviebtn') as HTMLButtonElement;
     const aposter = document.querySelector('.inputAddField-Poster') as HTMLInputElement;
     let poster = '';
@@ -458,13 +458,13 @@ class MovieView {
       }
     });
   }
-  showFavoriteItem(ids) {
+  showFavoriteItem(ids: any[]) {
     this.ids = Array.isArray(ids) ? ids : [ids];
     const cardTrending = document.querySelectorAll('.card-trending');
     let html = '';
     cardTrending.forEach((card) => {
       const value = card.getAttribute('data-id');
-      this.ids.forEach((id) => {
+      this.ids.forEach((id:any) => {
         if (id == value) {
           const btnfvr = card.querySelector('.card-trending-status') as HTMLElement;
           const imga = btnfvr.querySelector('img') as HTMLImageElement;
@@ -473,13 +473,13 @@ class MovieView {
       });
     });
   }
-  displayDataFavorites(movies, ids) {
+  displayDataFavorites(movies: Movie[] | undefined, ids: any[]) {
     this.movies = movies;
     this.ids = Array.isArray(ids) ? ids : [ids];
     const favorite = document.querySelector('.favorite') as HTMLElement;
     let html = '';
-    this.movies.forEach((movie) => {
-      this.ids.forEach((id) => {
+    this.movies.forEach((movie: { id: any; favorites: any; duration?: any; poster?: any; name?: any; evaluate?: any; year?: any; type?: any; description?: any; link?: any; }) => {
+      this.ids.forEach((id: any) => {
         if (movie.id === id) {
           movie.favorites = 'ic-heart-3d-hv';
           html += cardTrending(movie);
@@ -488,7 +488,7 @@ class MovieView {
     });
     favorite.innerHTML = html;
   }
-  displayDataContinue(movies: Movie[] | undefined, ids: { id: number; timewatched: number; }[] | undefined, idmv: string | undefined) {
+  displayDataContinue(movies: Movie[] | undefined, ids: { id: number; timewatched: number; }[] | undefined, idmv: any) {
     this.movies = movies;
     this.ids = ids;
     this.idmv = Array.isArray(idmv) ? idmv : [idmv];
@@ -513,7 +513,7 @@ class MovieView {
       });
     });
   }
-  bindAddToFavorite(handle) {
+  bindAddToFavorite(handle:(id: number)=> void) {
     const button = document.querySelectorAll('.btn-addFavorite');
     button.forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -525,7 +525,7 @@ class MovieView {
           } else if (imga.src === `${apimv}ic-heart-3d-hv.svg`) {
             imga.src = `${apimv}ic-heart-3d.svg`;
           }
-          const id = parentDiv.getAttribute('data-id');
+          const id = Number(parentDiv.getAttribute('data-id')) ;
           handle(id);
           setTimeout(() => {
             window.location.reload();
