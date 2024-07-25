@@ -309,11 +309,7 @@ class MovieView {
         const btnfvr = card.querySelector('.card-trending-status');
         const imga = btnfvr.querySelector('img');
         const imgasrc = imga.src;
-<<<<<<< Updated upstream
-        this.movies.forEach((movie) => {
-=======
         this.movies.forEach((movie: { id: any; duration?: any; poster?: any; name?: any; evaluate?: any; year?: any; type?: any; description?: any; }) => {
->>>>>>> Stashed changes
           if (movie.id === id) {
             if(movie)
             cardContainer.innerHTML = CardDetail(movie);
