@@ -326,11 +326,7 @@ class MovieView {
         btnwatch.addEventListener('click', (e) => {
           e.preventDefault();
           const id = carddt.getAttribute('data-id');
-<<<<<<< Updated upstream
-          this.movies.forEach((movie) => {
-=======
           this.movies.forEach((movie: { id?: any; duration?: any; poster?: any; name?: any; evaluate?: any; year?: any; type?: any; description?: any;link?: any; }) => {
->>>>>>> Stashed changes
             if (movie.id === id) {
               this.idmv.forEach((idm) => {
                 if (idm.id === id) {
@@ -463,23 +459,14 @@ class MovieView {
     });
     favorite.innerHTML = html;
   }
-<<<<<<< Updated upstream
-  displayDataContinue(movies, ids, idmv) {
-=======
   displayDataContinue(movies: Movie[] | undefined, ids: { id: number; timewatched: number; }[] | undefined, idmv: string | undefined) {
->>>>>>> Stashed changes
     this.movies = movies;
     this.ids = ids;
     this.idmv = Array.isArray(idmv) ? idmv : [idmv];
     const continues = document.querySelector('.movie-center-continue-card');
     let html = '';
-<<<<<<< Updated upstream
-    this.movies.forEach((movie) => {
-      this.ids.forEach((id) => {
-=======
     this.movies.forEach((movie: { id?: any; duration?: any; poster?: any; name?: any; evaluate?: any; year?: any; type?: any; description?: any;link?: any; }) => {
       this.ids.forEach((id: { id: any; }) => {
->>>>>>> Stashed changes
         if (movie.id === id.id) {
           html += cardTrending(movie);
         }
