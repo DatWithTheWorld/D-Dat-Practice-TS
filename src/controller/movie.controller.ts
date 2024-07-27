@@ -102,9 +102,9 @@ class MovieController {
     const ids = await this.movieServices.getMovieIdByUIDCTN();
     this.movieViews.showCardTrending(movies, ids);
   }
-  async handleDisplayDataFavorites() {
+  async handleDisplayDataFavorites(): Promise<void> {
     const movies = await this.movieServices.getAllMovies();
-    const ids = await this.movieServices.getMovieIdByUID(
+    const ids= await this.movieServices.getMovieIdByUID(
       sessionStorage.getItem('id') as string,
     );
     this.movieViews.displayDataFavorites(movies, ids);

@@ -458,7 +458,7 @@ class MovieView {
       }
     });
   }
-  showFavoriteItem(ids: any[]) {
+  showFavoriteItem(ids: any) {
     this.ids = Array.isArray(ids) ? ids : [ids];
     const cardTrending = document.querySelectorAll('.card-trending');
     let html = '';
@@ -473,7 +473,7 @@ class MovieView {
       });
     });
   }
-  displayDataFavorites(movies: Movie[] | undefined, ids: any[]) {
+  displayDataFavorites(movies: Movie[] | undefined, ids: any) {
     this.movies = movies;
     this.ids = Array.isArray(ids) ? ids : [ids];
     const favorite = document.querySelector('.favorite') as HTMLElement;
