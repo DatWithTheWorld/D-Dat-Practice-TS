@@ -1,9 +1,6 @@
 import Header from '../layouts/header';
 import {
-  IcHeartActiveIcon,
-  IcBellIcon,
   IcHeartNoActiveIcon,
-  PngTkoTrain,
 } from '../../resources/assets/icons';
 import leftNav from '../layouts/leftNav';
 import cardTrending from '../components/cardTrending';

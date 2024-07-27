@@ -6,7 +6,6 @@ import {
   IcUsersIcon,
   IcCalendarIcon,
   IcMessageIcon,
-  LgBgr,
   IcSlidersIcon,
   IcLogOutIcon,
 } from '../../resources/assets/icons';

@@ -1,5 +1,8 @@
+import UserService from "../services/user.service";
+
 class UserController{
-    constructor(userService){
+    userService: UserService;
+    constructor(userService: UserService){
       this.userService = userService;
       this.userService.getAllUsers();
     }
