@@ -1,5 +1,4 @@
-import { IcHeartActiveIcon, PngTkoTrain } from "../../resources/assets/icons";
-import cardTrending from "../components/cardTrending";
+
 import Header from "../layouts/header";
 import leftNav from "../layouts/leftNav";
 

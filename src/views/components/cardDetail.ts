@@ -5,7 +5,7 @@ import {
 } from '../../resources/assets/icons';
 import { apimv } from '../../resources/constants/constant';
 
-function CardDetail(movies) {
+function CardDetail(movies: { duration: number; id: any; poster: any; name: any; evaluate: any; year: any; type: any; description: any; }) {
   console.log(movies.duration);
   const hours = Math.floor(movies.duration / 60);
   const minutes = movies.duration % 60;
