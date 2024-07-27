@@ -1,3 +1,4 @@
+
 export { default as IcBellIcon } from './ic-bell.svg';
 export { default as LgLogoMainIcon } from './lg-logo-main.png';
 export { default as LgBgr } from './lg-bgr.png';
@@ -19,3 +20,4 @@ export { default as IcVolumeIcon } from './ic-volume.svg';
 export { default as IcMaximizeIcon } from './ic-maximize.svg';
 export { default as IcPlayCircleIcon } from './ic-play-circle.svg';
 export { default as IcReturnIcon } from './ic-return.svg';
+

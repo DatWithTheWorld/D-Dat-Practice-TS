@@ -8,7 +8,7 @@ import {
 } from '../../resources/assets/icons';
 import { apimv } from '../../resources/constants/constant';
 
-const Playscr = (videolink) => {
+const Playscr = (videolink: any) => {
   return ` 
       <video id="playsrcvd" width="100%" height="100%" autoplay controls>
         <source src="${apimv}${videolink}" type="video/mp4">
