@@ -339,8 +339,9 @@ class MovieView {
         const btnfvr = card.querySelector('.card-trending-status') as HTMLElement;
         const imga = btnfvr.querySelector('img') as HTMLImageElement;
         const imgasrc = imga.src;
-        this.movies.forEach((movie: { id: any; duration?: number; poster?: any; name?: any; evaluate?: any; year?: any; type?: any; description?: any; }) => {
+        this.movies.forEach((movie: { id: any; duration?: any; poster?: any; name?: any; evaluate?: any; year?: any; type?: any; description?: any; }) => {
           if (movie.id === id) {
+            if(movie)
             cardContainer.innerHTML = CardDetail(movie);
           }
         });
@@ -351,11 +352,11 @@ class MovieView {
         btnwatch.addEventListener('click', (e) => {
           e.preventDefault();
           const id = carddt.getAttribute('data-id');
-          this.movies.forEach((movie: { id: string | null; link: string; }) => {
+          this.movies.forEach((movie: { id?: any; duration?: any; poster?: any; name?: any; evaluate?: any; year?: any; type?: any; description?: any;link?: any; }) => {
             if (movie.id === id) {
               this.idmv.forEach((idm: { id: string | null; timewatched: string; }) => {
                 if (idm.id === id) {
-                  sessionStorage.setItem('link', movie.link);
+                  sessionStorage.setItem('link', movie.link );
                   sessionStorage.setItem('mvid', movie.id);
                   sessionStorage.setItem('duration', idm.timewatched);
                   window.location.href = '/playscr';
@@ -490,13 +491,13 @@ class MovieView {
     });
     favorite.innerHTML = html;
   }
-  displayDataContinue(movies: Movie[] | undefined, ids: { id: number; timewatched: number; }[] | undefined, idmv: string) {
+  displayDataContinue(movies: Movie[] | undefined, ids: { id: number; timewatched: number; }[] | undefined, idmv: string | undefined) {
     this.movies = movies;
     this.ids = ids;
     this.idmv = Array.isArray(idmv) ? idmv : [idmv];
     const continues = document.querySelector('.movie-center-continue-card') as HTMLElement;
     let html = '';
-    this.movies.forEach((movie: { id: any; poster?: any; favorites?: any; name?: any; year?: any; type?: any; }) => {
+    this.movies.forEach((movie: { id?: any; duration?: any; poster?: any; name?: any; evaluate?: any; year?: any; type?: any; description?: any;link?: any; }) => {
       this.ids.forEach((id: { id: any; }) => {
         if (movie.id === id.id) {
           html += cardTrending(movie);
