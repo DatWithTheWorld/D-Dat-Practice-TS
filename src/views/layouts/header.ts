@@ -1,8 +1,6 @@
 import {
   IcSearchIcon,
-  IcBellIcon,
-  IcHeartActiveIcon,
-  IcHeartNoActiveIcon,
+  IcBellIcon
 } from '../../resources/assets/icons';
 import navChild from '../components/navChild';
 

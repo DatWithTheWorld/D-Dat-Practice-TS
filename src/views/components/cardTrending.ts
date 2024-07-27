@@ -1,4 +1,3 @@
-import { IcHeartActiveIcon } from '../../resources/assets/icons';
 import { apimv } from '../../resources/constants/constant';
 
 function cardTrending(movie: { id?: any; duration?: any; poster?: any; name?: any; evaluate?: any; year?: any; type?: any; description?: any;link?: any; favorites?: any; }) {

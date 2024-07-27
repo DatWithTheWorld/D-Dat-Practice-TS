@@ -1,4 +1,4 @@
-// export { default as IcBellIcon } from './ic-bell.svg';
+
 import icBellIcons from './ic-bell.svg';
 export { default as LgLogoMainIcon } from './lg-logo-main.png';
 export { default as LgBgr } from './lg-bgr.png';
@@ -23,3 +23,4 @@ export { default as IcReturnIcon } from './ic-return.svg';
 
 
 const IcBellIcon: string = icBellIcons;
+
