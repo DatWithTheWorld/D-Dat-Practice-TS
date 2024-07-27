@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/DatWithTheWorld/duc-dat-practice-js#readme",
   "devDependencies": {
+    "@parcel/resolver-glob": "^2.12.0",
     "@parcel/transformer-sass": "^2.11.0",
     "buffer": "^6.0.3",
     "eslint": "^8.45.0",
@@ -28,10 +29,11 @@
     "eslint-plugin-import": "^2.27.5",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
-    "parcel": "^2.9.3",
+    "parcel": "^2.12.0",
     "posthtml-doctype": "^1.1.1",
     "posthtml-include": "^1.7.4",
-    "prettier": "3.0.0"
+    "prettier": "3.0.0",
+    "svg-sprite-loader": "^6.0.11"
   },
   "lint-staged": {
     "src/**/*.{js}": "eslint --cache --fix",

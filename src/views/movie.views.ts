@@ -274,7 +274,11 @@ class MovieView {
       '.movie-center-trending-card',
     );
     let html = '';
+<<<<<<< Updated upstream
     this.movies.forEach((movie) => {
+=======
+    this.movies.forEach((movie: Movie) => {
+>>>>>>> Stashed changes
       html += cardTrending(movie);
     });
     hometrendingct.innerHTML = html;
@@ -284,7 +288,11 @@ class MovieView {
     this.movies = movies;
     const movieTrending = document.querySelector('.movie-trending');
     let html = '';
+<<<<<<< Updated upstream
     this.movies.forEach((movie) => {
+=======
+    this.movies.forEach((movie:Movie) => {
+>>>>>>> Stashed changes
       html += cardTrending(movie);
     });
     movieTrending.innerHTML = html;
@@ -444,8 +452,13 @@ class MovieView {
     this.ids = Array.isArray(ids) ? ids : [ids];
     const favorite = document.querySelector('.favorite');
     let html = '';
+<<<<<<< Updated upstream
     this.movies.forEach((movie) => {
       this.ids.forEach((id) => {
+=======
+    this.movies.forEach((movie: Movie) => {
+      this.ids.forEach((id: any) => {
+>>>>>>> Stashed changes
         if (movie.id === id) {
           movie.favorites = 'ic-heart-3d-hv';
           html += cardTrending(movie);
