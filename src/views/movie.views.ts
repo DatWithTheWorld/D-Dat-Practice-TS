@@ -149,8 +149,7 @@ class MovieView {
       }
     });
   }
-
-
+  }
   videoDuration(dura: number) {
     const videos = document.getElementById('playsrcvd') as HTMLVideoElement;
     let maxDuration = 0;
@@ -203,7 +202,6 @@ class MovieView {
   }
   loginss(users: User[] | undefined ) {
     this.users = users;
-
     const forms = document.querySelector('.form-log') as HTMLFormElement;
     const button = document.querySelector('.btn-submit-login') as HTMLElement;
     button.addEventListener('click', (e) => {
@@ -233,7 +231,6 @@ class MovieView {
      
     });
   }
-
   return(handle: (mvid:string, currentTime:string)=>void) {
     const returnbtn = document.querySelector('.returnbtn') as HTMLElement;
     const video = document.querySelector('#playsrcvd') as HTMLVideoElement;
@@ -303,9 +300,7 @@ class MovieView {
       '.movie-center-trending-card',
     ) as HTMLElement ;
     let html = '';
-
     this.movies.forEach((movie: Movie) => {
-
       html += cardTrending(movie);
     });
     hometrendingct.innerHTML = html;
@@ -493,7 +488,6 @@ class MovieView {
     });
     favorite.innerHTML = html;
   }
-
   displayDataContinue(movies: Movie[] | undefined, ids: { id: number; timewatched: number; }[] | undefined, idmv: any) {
     this.movies = movies;
     this.ids = ids;
