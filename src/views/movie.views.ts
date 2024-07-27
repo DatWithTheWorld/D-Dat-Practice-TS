@@ -18,6 +18,10 @@ class MovieView {
   main: HTMLDivElement;
   container: HTMLDivElement;
   toastList: HTMLUListElement;
+  users: any;
+  movies: any;
+  idmv: any;
+  ids: any;
   constructor() {
     this.app = document.querySelector('#root');
     this.router = new Router(this.app);
@@ -47,15 +51,16 @@ class MovieView {
     const playcircle = document.querySelector('.playcircle');
     const playbarcon = document.querySelector('.playscr-bar-con');
     const playbar = document.querySelector('.playscr-bar');
-    const videos = document.getElementById('playsrcvd');
+    const videos = document.getElementById('playsrcvd') as HTMLVideoElement;
     const opa = document.querySelector('.opa');
     if(playscr != null && videos != null){
     const figureE = Array.from(playscr.querySelectorAll('.figuresc'));
     playscr.addEventListener('click', function (event) {
-      const target = event.target;
-      if (target !== playbar && !figureE.includes(target)) {
+      const target = event.target as HTMLElement;
+      if (target  !== playbar && !figureE.includes(target)) {
         if (videos.paused) {
           videos.play();
+          if(playcircle && returnbtn && playbarcon && opa){
           playcircle.classList.toggle('hidden');
           returnbtn.classList.toggle('hidden');
           setTimeout(() => {
@@ -64,19 +69,24 @@ class MovieView {
           setTimeout(() => {
             opa.classList.toggle('hidden');
           }, 0);
+        }
         } else {
           videos.pause();
+          if(playcircle && returnbtn && playbarcon && opa){
           opa.classList.toggle('hidden');
           playcircle.classList.toggle('hidden');
           playbarcon.classList.toggle('hidden');
           returnbtn.classList.toggle('hidden');
         }
       }
+      }
     });
     videos.addEventListener('ended', () => {
+        if(playcircle && returnbtn && playbarcon && opa){
       playcircle.classList.toggle('hidden');
       playbarcon.classList.toggle('hidden');
       returnbtn.classList.toggle('hidden');
+        }
     });
     }
     
@@ -87,9 +97,12 @@ class MovieView {
     const returnbtn = document.querySelector('.returnbtn');
     const videos = document.getElementById('playsrcvd');
     setTimeout(() => {
+      if(playscrbarcon && returnbtn){
       playscrbarcon.classList.toggle('hidden');
       returnbtn.classList.toggle('hidden');
+      }
     }, 2000);
+
   }
 
   initRoute() {
@@ -105,24 +118,27 @@ class MovieView {
     const loginform = document.querySelector('.con-form-login');
     const lgform = document.querySelector('.form-log') as HTMLFormElement;
     validate(lgform);
+    if(logginbtn && loginform && lgform){
     logginbtn.addEventListener('click', function () {
       loginform.classList.toggle('hidden');
     });
     document.addEventListener('click', function (e) {
-      const targetE = e.target;
+      const targetE = e.target as HTMLElement;
       if (!loginform.contains(targetE) && !logginbtn.contains(targetE)) {
         loginform.classList.add('hidden');
       }
     });
   }
+  }
   toggleAddForm() {
     const btnadd = document.querySelector('.btn-add');
     const addForm = document.querySelector('.addMovieForm');
+    if( btnadd && addForm){
     btnadd.addEventListener('click', function (e) {
       addForm.classList.toggle('hidden');
     });
     document.addEventListener('click', function (event) {
-      const targetElement = event.target;
+      const targetElement = event.target as HTMLElement;
       if (!addForm.classList.contains('hidden')) {
         if (
           !addForm.contains(targetElement) &&
@@ -134,13 +150,14 @@ class MovieView {
     });
   }
 
+
   videoDuration(dura: number) {
     const videos = document.getElementById('playsrcvd') as HTMLVideoElement;
     let maxDuration = 0;
-    const progressBar = document.querySelector('.progress-bar');
-    const timingElement = document.querySelector('.timing');
-    const maxtimeE = document.querySelector('.maxtime');
-
+    const progressBar = document.querySelector('.progress-bar') as HTMLElement;
+    const timingElement = document.querySelector('.timing') as HTMLElement;
+    const maxtimeE = document.querySelector('.maxtime') as HTMLElement;
+    if(videos)
     videos.addEventListener('loadedmetadata', function (e) {
       maxDuration = videos.duration;
       if (dura) {
@@ -178,7 +195,7 @@ class MovieView {
       registform.classList.toggle('hidden');
     });
     document.addEventListener('click', function (e) {
-      const targetE = e.target;
+      const targetE = e.target as HTMLElement;
       if (!registform.contains(targetE) && !signupbtn.contains(targetE)) {
         registform.classList.add('hidden');
       }
@@ -211,14 +228,9 @@ class MovieView {
           } else {
             createToast('error', 'Invalid username or password');
           }
-        });
-
-        if (isLoggedIn) {
-          window.location.href = '/home';
-        } else {
-          createToast('error', 'Invalid username or password');
         }
       }
+     
     });
   }
 
@@ -235,7 +247,7 @@ class MovieView {
     });
   }
   homepageoption() {
-    const navleft = document.querySelector('.nav-left-container');
+    const navleft = document.querySelector('.nav-left-container') as HTMLElement;
     const lilist = navleft.querySelectorAll(`span`);
     const atag = navleft.querySelectorAll(`a`);
     atag.forEach((ef) => {
@@ -267,10 +279,10 @@ class MovieView {
     });
   }
   showSite() {
-    const navleft = document.querySelector('.nav-left-container');
-    const homep = document.querySelector('.homep');
-    const favoritep = document.querySelector('.favoritep');
-    const trendingp = document.querySelector('.trendingp');
+    const navleft = document.querySelector('.nav-left-container') as HTMLElement;
+    const homep = document.querySelector('.homep') as HTMLElement;
+    const favoritep = document.querySelector('.favoritep') as HTMLElement;
+    const trendingp = document.querySelector('.trendingp') as HTMLElement;
     const currentPath = window.location.pathname;
     switch (currentPath) {
       case '/home':
@@ -289,7 +301,7 @@ class MovieView {
     this.movies = movies;
     const hometrendingct = document.querySelector(
       '.movie-center-trending-card',
-    );
+    ) as HTMLElement ;
     let html = '';
     this.movies.forEach((movie: { id: any; poster: any; favorites: any; name: any; year: any; type: any; }) => {
       html += cardTrending(movie);
@@ -299,7 +311,7 @@ class MovieView {
 
   displayDataTDP(movies: Movie[] | undefined) {
     this.movies = movies;
-    const movieTrending = document.querySelector('.movie-trending');
+    const movieTrending = document.querySelector('.movie-trending') as HTMLElement;
     let html = '';
     this.movies.forEach((movie: { id: any; poster: any; favorites: any; name: any; year: any; type: any; }) => {
       html += cardTrending(movie);
@@ -310,10 +322,11 @@ class MovieView {
   showCardTrending(movies: Movie[] | undefined, idmv: { id: number; timewatched: number; }[] | undefined) {
     this.idmv = idmv;
     this.movies = movies;
-    const movieTrending = document.querySelector('.movie-trending');
-    const cardContainer = document.querySelector('.card-container');
-    const cardTrending = movieTrending.querySelectorAll('.card-trending');
+    const movieTrending = document.querySelector('.movie-trending') as HTMLElement;
+    const cardContainer = document.querySelector('.card-container') as HTMLElement;
+    const cardTrending = movieTrending.querySelectorAll('.card-trending') as NodeListOf<HTMLElement> 
     cardTrending.forEach((card) => {
+      card = card as HTMLElement;
       card.addEventListener('click', (e) => {
         e.preventDefault();
         card.style.opacity = '1';
@@ -323,18 +336,18 @@ class MovieView {
           }
         });
         const id = card.getAttribute('data-id');
-        const btnfvr = card.querySelector('.card-trending-status');
-        const imga = btnfvr.querySelector('img');
+        const btnfvr = card.querySelector('.card-trending-status') as HTMLElement;
+        const imga = btnfvr.querySelector('img') as HTMLImageElement;
         const imgasrc = imga.src;
         this.movies.forEach((movie: { id: any; duration?: number; poster?: any; name?: any; evaluate?: any; year?: any; type?: any; description?: any; }) => {
           if (movie.id === id) {
             cardContainer.innerHTML = CardDetail(movie);
           }
         });
-        const cardDetail = document.querySelector('.card-detail-stt');
+        const cardDetail = document.querySelector('.card-detail-stt') as HTMLImageElement;
         cardDetail.src = imgasrc;
-        const carddt = document.querySelector('.card-details');
-        const btnwatch = document.querySelector('.btn-watch');
+        const carddt = document.querySelector('.card-details') as HTMLElement;
+        const btnwatch = document.querySelector('.btn-watch') as HTMLElement;
         btnwatch.addEventListener('click', (e) => {
           e.preventDefault();
           const id = carddt.getAttribute('data-id');
@@ -355,13 +368,16 @@ class MovieView {
     });
   }
   bindAddUser(handle) {
-    const addButton = document.querySelector('.btn-submit-regist');
-    const formRes = document.querySelector('.form-res');
+    const addButton = document.querySelector('.btn-submit-regist') as HTMLElement;
+    const formRes = document.querySelector('.form-res') as HTMLFormElement;
+    const usernameInput = formRes.querySelector('.username-input') as HTMLInputElement;
+    const passwordInput = formRes.querySelector('.userpassword-input') as HTMLInputElement;
+    const emailInput = formRes.querySelector('.useremail-input') as HTMLInputElement;
     addButton.addEventListener('click', (e) => {
       e.preventDefault();
-      const name = formRes.querySelector('.username-input').value;
-      const password = formRes.querySelector('.userpassword-input').value;
-      const email = formRes.querySelector('.useremail-input').value;
+      const name = usernameInput.value;
+      const password = passwordInput.value;
+      const email = emailInput.value;
       if (this.checkValidForm(formRes)) {
         const user = {
           id: generateID(),
@@ -391,37 +407,40 @@ class MovieView {
     });
   }
   bindAddMovie(handle) {
-    const addButton = document.querySelector('.addmoviebtn');
-    const aposter = document.querySelector('.inputAddField-Poster');
+    const addButton = document.querySelector('.addmoviebtn') as HTMLButtonElement;
+    const aposter = document.querySelector('.inputAddField-Poster') as HTMLInputElement;
     let poster = '';
     aposter.addEventListener('change', (ev) => {
-      const file = ev.target.files[0];
-      poster = file.name;
+      const file = (ev.target as HTMLInputElement).files?.[0];
+      poster = file?.name || "";
     });
     let link = '';
     let duration = '';
-    const avideo = document.querySelector('.inputAddField-Video');
+    const avideo = document.querySelector('.inputAddField-Video') as HTMLInputElement;
     avideo.addEventListener('change', async (ev) => {
-      const file = ev.target.files[0];
-      link = file.name;
-      const fileUrl = URL.createObjectURL(file);
+      const file = (ev.target as HTMLInputElement).files?.[0];
+      link = file?.name || "";
+      const fileUrl = file ? URL.createObjectURL(file) : "";
       const video = document.createElement('video');
       video.src = fileUrl;
-      duration = await this.getVideoDuration(file);
     });
-    addButton.addEventListener('click', (e) => {
+    addButton.addEventListener('click', async (e) => {
       e.preventDefault();
-      const name = document.querySelector('.inputAddField-Name').value;
-      const ayear = document.querySelector('.inputAddField-Date').value;
+      const nameInput = document.querySelector('.inputAddField-Name') as HTMLInputElement;
+    const dateInput = document.querySelector('.inputAddField-Date') as HTMLInputElement;
+    const typeInput = document.querySelector('.inputAddField-Type') as HTMLInputElement;
+    const evaluateInput = document.querySelector('.inputAddField-Evaluate') as HTMLInputElement;
+    const descriptionInput = document.querySelector('.inputAddField-Description') as HTMLInputElement;
+      const name = nameInput.value;
+      const ayear = dateInput.value;
       const year = ayear.substring(0, 4);
-      const type = document.querySelector('.inputAddField-Type').value;
-      const evaluate = document.querySelector('.inputAddField-Evaluate').value;
-      const description = document.querySelector(
-        '.inputAddField-Description',
-      ).value;
+      const type = typeInput.value;
+      const evaluate = evaluateInput.value;
+      const description = descriptionInput.value;
       if (name === '' || poster === '' || link === '') {
         createToast('error', 'Please fill all the fields');
       } else {
+        const movieDuration = await this.getVideoDuration(avideo.files?.[0])
         const movie = {
           id: generateID(),
           name,
@@ -429,7 +448,7 @@ class MovieView {
           type,
           poster,
           link,
-          duration,
+          duration : movieDuration,
           description,
           evaluate,
           favorites: 'ic-heart-3d',
@@ -449,8 +468,8 @@ class MovieView {
       const value = card.getAttribute('data-id');
       this.ids.forEach((id) => {
         if (id == value) {
-          const btnfvr = card.querySelector('.card-trending-status');
-          const imga = btnfvr.querySelector('img');
+          const btnfvr = card.querySelector('.card-trending-status') as HTMLElement;
+          const imga = btnfvr.querySelector('img') as HTMLImageElement;
           imga.src = `${apimv}ic-heart-3d-hv.svg`;
         }
       });
@@ -459,7 +478,7 @@ class MovieView {
   displayDataFavorites(movies, ids) {
     this.movies = movies;
     this.ids = Array.isArray(ids) ? ids : [ids];
-    const favorite = document.querySelector('.favorite');
+    const favorite = document.querySelector('.favorite') as HTMLElement;
     let html = '';
     this.movies.forEach((movie) => {
       this.ids.forEach((id) => {
@@ -475,7 +494,7 @@ class MovieView {
     this.movies = movies;
     this.ids = ids;
     this.idmv = Array.isArray(idmv) ? idmv : [idmv];
-    const continues = document.querySelector('.movie-center-continue-card');
+    const continues = document.querySelector('.movie-center-continue-card') as HTMLElement;
     let html = '';
     this.movies.forEach((movie: { id: any; poster?: any; favorites?: any; name?: any; year?: any; type?: any; }) => {
       this.ids.forEach((id: { id: any; }) => {
@@ -489,8 +508,8 @@ class MovieView {
     cardtr.forEach((card) => {
       this.idmv.forEach((id: string | null) => {
         if (id === card.getAttribute('data-id')) {
-          const btnfvr = card.querySelector('.card-trending-status');
-          const imga = btnfvr.querySelector('img');
+          const btnfvr = card.querySelector('.card-trending-status') as HTMLInputElement;
+          const imga = btnfvr.querySelector('img') as HTMLImageElement;
           imga.src = `${apimv}ic-heart-3d-hv.svg`;
         }
       });
@@ -502,7 +521,7 @@ class MovieView {
       btn.addEventListener('click', () => {
         const parentDiv = btn.closest('.card-trending');
         if (parentDiv) {
-          const imga = parentDiv.querySelector('.image-status');
+          const imga = parentDiv.querySelector('.image-status') as HTMLImageElement;
           if (imga.src === '${apimv}ic-heart-3d.svg') {
             imga.src = `${apimv}ic-heart-3d-hv.svg`;
           } else if (imga.src === `${apimv}ic-heart-3d-hv.svg`) {
